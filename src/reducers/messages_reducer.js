@@ -4,8 +4,10 @@ const messagesReducer = (state, action) => {
   }
 
   switch (action.type) {
-    case 'ADD_MESSAGE':
-      return action.payload;
+    case 'CREATE_MESSAGE':
+      const newMessagesList = state.slice(0);
+      newMessagesList.push(action.payload);
+      return newMessagesList;
     case 'FETCH_MESSAGES':
       // to avoid emptying messages when LeWagon API return empty list
       if (action.payload.messages.length > 0) {
