@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore, combineReducers } from 'redux';
-import logger from 'redux-logger'
+import logger from 'redux-logger';
 import promiseMiddleware from 'redux-promise';
 
 // internal modules
@@ -20,7 +20,20 @@ const initialState = {
   channels: ['general', 'react', 'Lyon'],
   // currentUserName: prompt("What's your name ?") || `john_doe-${Math.floor(Math.random()*100)}`,
   currentUserName: `john_doe-${Math.floor(Math.random()*100)}`,
-  messages: [],
+  messages: [
+    {
+      author: "anonymous92",
+      content: "Hello world!",
+      created_at: "2017-09-26T23:03:16.365Z",
+      id: 1
+    },
+    {
+      author: "anonymous77",
+      content: "My name is anonymous77",
+      created_at: "2017-09-26T23:03:21.194Z",
+      id: 2
+    }
+  ],
   selectedChannel: 'general'
 };
 
