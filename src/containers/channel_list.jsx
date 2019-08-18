@@ -9,7 +9,11 @@ const ChannelList = (props) => {
       <ul className="list-group">
         {
           props.channels.map((channel) => {
-            return <li className={`list-group-item ${props.selectedChannel === channel ? 'active' : ''}`}>#{channel}</li>;
+            return (
+              <li className={`list-group-item ${props.selectedChannel === channel ? 'active' : ''}`} key={channel}>
+                #{channel}
+              </li>
+            );
           })
         }
       </ul>
