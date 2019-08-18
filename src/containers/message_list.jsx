@@ -22,6 +22,10 @@ class MessageList extends Component {
     this.interval = setInterval(this.fetchMessagesFunction, 5000);
   }
 
+  componentDidUpdate() {
+    this.messageList.scrollTop = this.messageList.scrollHeight;
+  }
+
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -34,13 +38,15 @@ class MessageList extends Component {
     return (
       <div className="col-sm-9 message-list">
         <h4>Channel #{this.props.selectedChannel}</h4>
-        <ul>
-          {
-            this.props.messages.map((message) => {
-              return <Message message={message} key={message.id} />;
-            })
-          }
-        </ul>
+        <div ref={(messageList) => { this.messageList = messageList; }}>
+          <ul>
+            {
+              this.props.messages.map((message) => {
+                return <Message message={message} key={message.id} />;
+              })
+            }
+          </ul>
+        </div>
         <MessageForm />
       </div>
     );
