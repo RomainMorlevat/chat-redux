@@ -38,7 +38,7 @@ class MessageList extends Component {
     return (
       <div className="col-sm-9 message-list">
         <h4>Channel #{this.props.selectedChannel}</h4>
-        <div ref={(messageList) => { this.messageList = messageList; }}>
+        <div ref={(messageList) => { this.messageList = messageList; }} style={{ boxSizing: "border-box",height: "80vh", overflow: "scroll"}}>
           <ul>
             {
               this.props.messages.map((message) => {
