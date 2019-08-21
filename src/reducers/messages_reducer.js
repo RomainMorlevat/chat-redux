@@ -9,12 +9,7 @@ const messagesReducer = (state, action) => {
       newMessagesList.push(action.payload);
       return newMessagesList;
     case 'FETCH_MESSAGES':
-      // to avoid emptying messages when LeWagon API return empty list
-      if (action.payload.messages.length > 0) {
-        return action.payload.messages;
-      } else {
-        return state;
-      }
+      return action.payload.messages;
     default:
       return state;
   }

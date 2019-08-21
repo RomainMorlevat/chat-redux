@@ -19,7 +19,7 @@ class MessageList extends Component {
   }
 
   componentDidMount() {
-    this.interval = setInterval(this.fetchMessagesFunction, 5000);
+    this.interval = setInterval(this.fetchMessagesFunction, 30000);
   }
 
   componentDidUpdate() {
