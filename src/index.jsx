@@ -5,7 +5,8 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore, combineReducers } from 'redux';
 import logger from 'redux-logger';
 import promiseMiddleware from 'redux-promise';
-
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { createHistory as history } from 'history';
 // internal modules
 import App from './components/app';
 import '../assets/stylesheets/application.scss';
@@ -14,7 +15,6 @@ import '../assets/stylesheets/application.scss';
 import channelsReducer from './reducers/channels_reducer';
 import currentUserNameReducer from './reducers/current_user_name_reducer';
 import messagesReducer from './reducers/messages_reducer';
-import selectedChannelReducer from './reducers/selected_channel_reducer';
 
 const initialState = {
   channels: ['general', 'react', 'Lyon'],
@@ -33,15 +33,13 @@ const initialState = {
       created_at: "2017-09-26T23:03:21.194Z",
       id: 2
     }
-  ],
-  selectedChannel: 'general'
+  ]
 };
 
 const reducers = combineReducers({
   channels: channelsReducer,
   currentUserName: currentUserNameReducer,
-  messages: messagesReducer,
-  selectedChannel: selectedChannelReducer
+  messages: messagesReducer
 });
 
 const middlewares = applyMiddleware(logger, promiseMiddleware);
@@ -49,7 +47,12 @@ const middlewares = applyMiddleware(logger, promiseMiddleware);
 // render an instance of the component in the DOM
 ReactDOM.render(
   <Provider store={createStore(reducers, initialState, middlewares)}>
-    <App />
+    <Router history={history}>
+      <Switch>
+        <Route path="/:channel" component={App} />
+        <Redirect from="/" to="/general" />
+      </Switch>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

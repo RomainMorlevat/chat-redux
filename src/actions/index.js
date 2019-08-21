@@ -1,15 +1,20 @@
+const BASE_URL = 'https://wagon-chat.herokuapp.com/';
+
+export const CREATE_MESSAGE = 'CREATE_MESSAGE';
+export const FETCH_MESSAGES = 'FETCH_MESSAGES';
+
 export function fetchMessages(channel) {
-  const promise = fetch(`https://wagon-chat.herokuapp.com/${channel}/messages`)
+  const promise = fetch(`${BASE_URL}${channel}/messages`)
     .then(response => response.json());
 
   return {
-    type: 'FETCH_MESSAGES',
+    type: FETCH_MESSAGES,
     payload: promise
   };
 }
 
 export function createMessage(channel, author, content) {
-  const url = `https://wagon-chat.herokuapp.com/${channel}/messages`;
+  const url = `${BASE_URL}${channel}/messages`;
   const body = {
     author: author,
     content: content
@@ -24,14 +29,7 @@ export function createMessage(channel, author, content) {
   }).then(r => r.json());
 
   return {
-    type: 'CREATE_MESSAGE',
+    type: CREATE_MESSAGE,
     payload: promise
-  };
-}
-
-export function setSelectedChannel(channel) {
-  return {
-    type: 'SET_SELECTED_CHANNEL',
-    payload: channel
   };
 }

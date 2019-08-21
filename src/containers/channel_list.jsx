@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { fetchMessages, setSelectedChannel } from '../actions';
+import { Link } from 'react-router-dom';
+import { fetchMessages } from '../actions';
 
 class ChannelList extends Component {
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedChannel !== this.props.selectedChannel) {
-      this.props.fetchMessages(nextProps.selectedChannel);
+    if (nextProps.channelFromParams !== this.props.channelFromParams) {
+      this.props.fetchMessages(nextProps.channelFromParams);
     }
-  }
-
-  handleClick = (channel) => {
-    this.props.setSelectedChannel(channel);
   }
 
   render () {
@@ -24,11 +21,12 @@ class ChannelList extends Component {
             this.props.channels.map((channel) => {
               return (
                 <li
-                  className={`list-group-item ${this.props.selectedChannel === channel ? 'active' : ''}`}
+                  className={`list-group-item ${this.props.channelFromParams === channel ? 'active' : ''}`}
                   key={channel}
-                  onClick={() => this.handleClick(channel)}
                 >
-                  #{channel}
+                  <Link to={`/${channel}`}>
+                    #{channel}
+                  </Link>
                 </li>
               );
             })
@@ -47,7 +45,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchMessages, setSelectedChannel }, dispatch);
+  return bindActionCreators({ fetchMessages }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelList);
