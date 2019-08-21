@@ -1,4 +1,4 @@
-const selectedChannel = (state, action) => {
+const selectedChannelReducer = (state, action) => {
   if (state === undefined) {
     return null;
   }
@@ -11,4 +11,4 @@ const selectedChannel = (state, action) => {
   }
 };
 
-export default selectedChannel;
+export default selectedChannelReducer;

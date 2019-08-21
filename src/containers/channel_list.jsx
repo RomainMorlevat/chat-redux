@@ -25,7 +25,7 @@ function mapStateToProps(state) {
   return {
     channels: state.channels,
     selectedChannel: state.selectedChannel
-  }
+  };
 }
 
 export default connect(mapStateToProps, null)(ChannelList);

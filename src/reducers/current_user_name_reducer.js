@@ -1,4 +1,4 @@
-const currentUserName = (state, action) => {
+const currentUserNameReducer = (state, action) => {
   if (state === undefined) {
     return `john_doe-${Math.floor(Math.random()*100)}`;
   }
@@ -11,4 +11,4 @@ const currentUserName = (state, action) => {
   }
 };
 
-export default currentUserName;
+export default currentUserNameReducer;
