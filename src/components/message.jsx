@@ -1,4 +1,5 @@
 import React from 'react';
+import { emojify } from 'react-emojione';
 
 function hashCode(str) {
   let hash = 0;
@@ -18,7 +19,7 @@ const Message = (props) => {
       <div className="card-body">
         <h5 className="card-title" style={{ color: hashCode(props.message.author) }}>{props.message.author}</h5>
         <h6 className="card-subtitle mb-2 text-muted">{new Date(props.message.created_at).toLocaleTimeString()}</h6>
-        <p className="card-text">{props.message.content}</p>
+        <p className="card-text">{emojify(props.message.content)}</p>
       </div>
     </div>
   );
